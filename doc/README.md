@@ -2,24 +2,16 @@
 
 ## Beskrivning
 
-Här beskriver du applikationens funktionalitet.
-
-### Exempel (ta bort)
-
-Book-O-Matic är en applikation där användare kan skapa virtuella bokhyllor. De kan mata in vilka böcker de har, och information om dessa. Man kan betygssätta böcker och skriva kommentarer. Om en bok är inlagd av en annan användare kan andra användare lägga till den i "sin" bokhylla, och skriva egna kommentarer och recensioner och sätta egna betyg. Man kan söka efter titlar och se kommentarer, recensioner och betyg
+En applikation där användare kan skapa en lista med filmer de har sett. De kan betygsätta dessa och kommentera åsikter och tankar. Användare kan lägga till filmer i databasen som inte finns och filmer som lagts till av en användare kan sedan läggas till av andra i deras egna listor genom att söka upp befintliga titlar i databasen. 
 
 ## Användare och roller
-
-Här skriver du ner vilka typer av användare (som i inloggade användare) det finns, och vad de har för rättigheter, det vill säga, vad de kan göra (tänk admin, standard användare, etc).
-
-### Exempel (ta bort)
 
 Gästanvändare - oinloggad
 . Kan söka efter titlar och se genomsnittligt betyg. Kan inte se eller skriva kommentarer eller sätta egna betyg.
 
-Standardanvändare - inloggad. Kan allt gästanvändare kan, men kan även lägga in nya böcker och skriva kommentarer etc. Kan ta bort sitt eget konto och information kopplat till det.
+Standardanvändare - inloggad. Kan allt gästanvändare kan, men kan även lägga in nya filmer och skriva kommentarer etc. Kan ta bort sitt eget konto och information kopplat till det.
 
-Adminanvändare - kan ta bort/editera böcker, kommentarer och användare.
+Adminanvändare - kan ta bort/editera filmer, kommentarer och användare.
 
 ## ER-Diagram
 
