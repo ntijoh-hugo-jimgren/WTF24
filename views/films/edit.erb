@@ -1,0 +1,7 @@
+<h2>Redigera dina plugs här!</h2>
+
+<form action='/plugs/<%=@plugs['id']%>/update' method='post'> 
+  <input type='text' name='name' value='<%= @plugs['name']%>'></input> 
+  <input type='text' name='number' value='<%= @plugs['number']%>'></input> 
+  <button type='submit'>Send</button>
+</form>

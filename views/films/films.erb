@@ -1,0 +1,6 @@
+<% @plugs.each do |plug| %>
+    <li>
+        <a href="/plugs/<%=plug[0]%>"><%=plug[1]%></a>
+    </li>
+<% end %>
+<a href="/plugs/new">Lägg till plug</a>

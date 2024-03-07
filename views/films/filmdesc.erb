@@ -1,0 +1,12 @@
+<h2><%= @plugs['name'] %></h2>
+<pre> 
+  <p>Nummer: <%= @plugs['number'] %></p> 
+</pre>
+
+<a href="/plugs/<%= @plugs['id'] %>/edit">Edit</a>
+
+<form action='/plugs/<%= @plugs['id'] %>/delete' method='post'> 
+  <button type="submit">DELETE</button>
+</form>
+
+<a href="/plugs">Tillbaka till plugs</a>
