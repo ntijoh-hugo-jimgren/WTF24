@@ -10,6 +10,10 @@ class App < Sinatra::Base
         return @db
     end
 
+    get '/' do
+        erb :'films/index'
+    end
+
     get '/login' do
         erb :'films/login'
     end
@@ -24,10 +28,10 @@ class App < Sinatra::Base
     end
 
     post '/films/new' do 
-        name = params['name'] 
+        title = params['title'] 
         description = params['description']
-        query = 'INSERT INTO films (name, description) VALUES (?, ?) RETURNING *' 
-        result = db.execute(query, name, description).first 
+        query = 'INSERT INTO films (title, description) VALUES (?, ?) RETURNING *' 
+        result = db.execute(query, title, description).first 
         redirect "/films/#{result['id']}" 
     end
 
@@ -52,9 +56,9 @@ class App < Sinatra::Base
     end
 
     post '/films/:id/update' do |id| 
-        name = params['name']
+        title = params['title']
         description = params['description']
-        db.execute('UPDATE films SET name = ?, description = ? WHERE id = ?', name, description, id)
+        db.execute('UPDATE films SET title = ?, description = ? WHERE id = ?', title, description, id)
         redirect "/films/#{id}" 
       end
     

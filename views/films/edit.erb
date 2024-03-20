@@ -1,7 +1,7 @@
-<h2>Redigera dina plugs här!</h2>
+<h2>Redigera dina filmer här!</h2>
 
-<form action='/plugs/<%=@plugs['id']%>/update' method='post'> 
-  <input type='text' name='name' value='<%= @plugs['name']%>'></input> 
-  <input type='text' name='number' value='<%= @plugs['number']%>'></input> 
+<form action='/films/<%=@films['id']%>/update' method='post'> 
+  <input type='text' name='title' value='<%= @films['title']%>'></input> 
+  <input type='text' name='description' value='<%= @films['description']%>'></input> 
   <button type='submit'>Send</button>
 </form>

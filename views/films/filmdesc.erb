@@ -1,12 +1,13 @@
-<h2><%= @plugs['name'] %></h2>
+<h2><%= @films['name'] %></h2>
 <pre> 
-  <p>Nummer: <%= @plugs['number'] %></p> 
+  <h2><%= @films['title'] %></h2>
+  <p>desc: <%= @films['description'] %></p> 
 </pre>
 
-<a href="/plugs/<%= @plugs['id'] %>/edit">Edit</a>
+<a href="/films/<%= @films['id'] %>/edit">Edit</a>
 
-<form action='/plugs/<%= @plugs['id'] %>/delete' method='post'> 
+<form action='/films/<%= @films['id'] %>/delete' method='post'> 
   <button type="submit">DELETE</button>
 </form>
 
-<a href="/plugs">Tillbaka till plugs</a>
+<a href="/films">Tillbaka till filmer</a>

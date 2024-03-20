@@ -9,30 +9,30 @@ def db
 end
 
 def drop_tables
-    db.execute('DROP TABLE IF EXISTS plugs')
+    db.execute('DROP TABLE IF EXISTS films')
 end
 
 def create_tables
 
-    db.execute('CREATE TABLE plugs(
+    db.execute('CREATE TABLE films(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        number TEXT
+        title TEXT,
+        desecription TEXT
     )')
 
 end
 
 def seed_tables
 
-    plugs = [
-        {name: 'Bamse', number: '0709476442'},
-        {name: 'Björnbert', number: '0726414635'},
-        {name: 'Erick', number: '011953259340'},
-        {name: 'MrMilk', number: '0735141514'}
+    films = [
+        {title: 'Bamse', description: '0709476442'},
+        {title: 'Björnbert', description: '0726414635'},
+        {title: 'Erick', description: '011953259340'},
+        {title: 'MrMilk', description: '0735141514'}
     ]
 
-    plugs.each do |plug|
-        db.execute('INSERT INTO plug (name, number) VALUES (?,?)', plug[:name], plug[:number])
+    films.each do |film|
+        db.execute('INSERT INTO films (title, description) VALUES (?,?)', film[:title], film[:description])
     end
 
 end
