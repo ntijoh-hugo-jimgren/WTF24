@@ -10,6 +10,8 @@ end
 
 def drop_tables
     db.execute('DROP TABLE IF EXISTS films')
+    db.execute('DROP TABLE IF EXISTS users')
+    db.execute('DROP TABLE IF EXISTS words')
 end
 
 def create_tables
@@ -17,23 +19,27 @@ def create_tables
     db.execute('CREATE TABLE films(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
-        desecription TEXT
+        description TEXT
+    )')
+
+    db.execute('CREATE TABLE "users" (
+        "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "username"    TEXT NOT NULL UNIQUE,
+        "hashed_pass"    TEXT NOT NULL,
+        "access_level"    INTEGER NOT NULL,
+        "salt_key" TEXT NOT NULL
+    )')
+
+    db.execute('CREATE TABLE "words" (
+        "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "text"    TEXT NOT NULL
     )')
 
 end
 
 def seed_tables
 
-    films = [
-        {title: 'Bamse', description: '0709476442'},
-        {title: 'Björnbert', description: '0726414635'},
-        {title: 'Erick', description: '011953259340'},
-        {title: 'MrMilk', description: '0735141514'}
-    ]
-
-    films.each do |film|
-        db.execute('INSERT INTO films (title, description) VALUES (?,?)', film[:title], film[:description])
-    end
+    
 
 end
 

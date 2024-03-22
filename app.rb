@@ -2,6 +2,16 @@ class App < Sinatra::Base
 
     enable :sessions
 
+    helpers do
+        def h(text)
+          Rack::Utils.escape_html(text)
+        end
+      
+        def hattr(text)
+          Rack::Utils.escape_path(text)
+        end
+    end
+
     def db
         if @db == nil
             @db = SQLite3::Database.new('./db/db.sqlite')
@@ -14,12 +24,27 @@ class App < Sinatra::Base
         erb :'films/index'
     end
 
-    get '/login' do
+    get '/films/login' do
         erb :'films/login'
     end
 
-    get '/registrate' do
+    get '/films/registrate' do
         erb :'films/registrate'
+    end
+
+    post '/films/registrate' do
+        username = params['username']
+        cleartext_password = params['password'] 
+        salt_word = db.execute('SELECT text FROM words where id = ?', rand(1..50)).first
+        hashed_password = BCrypt::Password.create(cleartext_password + salt_word)
+        
+        user_check = db.execute('SELECT * FROM users WHERE username = ?', username)
+        if user_check == []
+            db.execute('INSERT INTO users (username, hashed_pass, access_level, salt_key) VALUES (?,?,?,?)') 
+            redirect "/films"
+        else
+            redirect "/films/register"
+        end
     end
 
     get '/films/new' do
@@ -60,6 +85,6 @@ class App < Sinatra::Base
         description = params['description']
         db.execute('UPDATE films SET title = ?, description = ? WHERE id = ?', title, description, id)
         redirect "/films/#{id}" 
-      end
+    end
     
 end
