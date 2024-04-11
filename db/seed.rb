@@ -27,12 +27,6 @@ def create_tables
         "username"    TEXT NOT NULL UNIQUE,
         "hashed_pass"    TEXT NOT NULL,
         "access_level"    INTEGER NOT NULL,
-        "salt_key" TEXT NOT NULL
-    )')
-
-    db.execute('CREATE TABLE "words" (
-        "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-        "text"    TEXT NOT NULL
     )')
 
 end

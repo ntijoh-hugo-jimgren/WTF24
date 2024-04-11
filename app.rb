@@ -28,6 +28,29 @@ class App < Sinatra::Base
         erb :'films/login'
     end
 
+    post '/films/login' do
+        username = params['username']
+        cleartext_password = params['password'] 
+
+        #hämta användare och lösenord från databasen med hjälp av det inmatade användarnamnet.
+        user = db.execute('SELECT * FROM users WHERE username = ?', username).first
+
+        if user == []
+            redirect "/films/register"
+        end
+
+        #omvandla den lagrade saltade hashade lösenordssträngen till en riktig bcrypt-hash
+        password_from_db = BCrypt::Password.new(user['hashed_pass'])
+
+        #jämför lösenordet från databasen med det inmatade lösenordet
+        if password_from_db == clertext_password 
+            session[:user_id] = user['id'] 
+            redirect "/films"
+        else
+            redirect "/films"
+        end
+    end
+
     get '/films/registrate' do
         erb :'films/registrate'
     end
@@ -35,13 +58,14 @@ class App < Sinatra::Base
     post '/films/registrate' do
         username = params['username']
         cleartext_password = params['password'] 
-        salt_word = db.execute('SELECT text FROM words where id = ?', rand(1..50)).first
-        hashed_password = BCrypt::Password.create(cleartext_password + salt_word)
+        hashed_pass = BCrypt::Password.create(cleartext_password)
+        access_level = 1
         
         user_check = db.execute('SELECT * FROM users WHERE username = ?', username)
         if user_check == []
-            db.execute('INSERT INTO users (username, hashed_pass, access_level, salt_key) VALUES (?,?,?,?)') 
-            redirect "/films"
+            query = 'INSERT INTO users (username, hashed_pass, access_level) VALUES (?,?,?)'
+            result = db.execute(query, username, hashed_pass, access_level).first 
+            redirect "/films/login"
         else
             redirect "/films/register"
         end
