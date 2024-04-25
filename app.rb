@@ -43,11 +43,11 @@ class App < Sinatra::Base
         password_from_db = BCrypt::Password.new(user['hashed_pass'])
 
         #jämför lösenordet från databasen med det inmatade lösenordet
-        if password_from_db == clertext_password 
+        if password_from_db == cleartext_password 
             session[:user_id] = user['id'] 
             redirect "/films"
         else
-            redirect "/films"
+            redirect "/films/login"
         end
     end
 
@@ -110,5 +110,7 @@ class App < Sinatra::Base
         db.execute('UPDATE films SET title = ?, description = ? WHERE id = ?', title, description, id)
         redirect "/films/#{id}" 
     end
+
+    
     
 end
