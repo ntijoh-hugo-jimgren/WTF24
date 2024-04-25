@@ -11,7 +11,7 @@ end
 def drop_tables
     db.execute('DROP TABLE IF EXISTS films')
     db.execute('DROP TABLE IF EXISTS users')
-    db.execute('DROP TABLE IF EXISTS comments')
+    db.execute('DROP TABLE IF EXISTS actors')
 end
 
 def create_tables
@@ -29,12 +29,17 @@ def create_tables
         "access_level"    INTEGER NOT NULL
     )')
 
-    db.execute('CREATE TABLE "comments" (
+    db.execute('CREATE TABLE "actors" (
         "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-        "content"    TEXT NOT NULL,
-        "user_id"    INTEGER NOT NULL,
-        "film_id"    INTEGER NOT NULL
+        "name"    TEXT NOT NULL UNIQUE,
     )')
+
+    # db.execute('CREATE TABLE "comments" (
+    #     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    #     "content"    TEXT NOT NULL,
+    #     "user_id"    INTEGER NOT NULL,
+    #     "film_id"    INTEGER NOT NULL
+    # )')
 
 end
 

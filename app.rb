@@ -12,6 +12,13 @@ class App < Sinatra::Base
         end
     end
 
+    before do
+        if session[:user_id]
+            @user = db.execute('SELECT * FROM users WHERE id = ?', session[:user_id]).first
+            @access_level = @user['access_level']
+        end
+    end
+
     def db
         if @db == nil
             @db = SQLite3::Database.new('./db/db.sqlite')
@@ -95,8 +102,11 @@ class App < Sinatra::Base
     end
 
     post '/films/:id/delete' do |id| 
-        db.execute('DELETE FROM films WHERE id = ?', id)
+        if @access_level == 2
+            db.execute('DELETE FROM films WHERE id = ?', id)
+        end
         redirect "/films"
+        
     end
 
     get '/films/:id/edit' do |id| 
@@ -111,6 +121,9 @@ class App < Sinatra::Base
         redirect "/films/#{id}" 
     end
 
-    
+    post '/films/logout' do
+        session.destroy
+        redirect "/"
+    end
     
 end

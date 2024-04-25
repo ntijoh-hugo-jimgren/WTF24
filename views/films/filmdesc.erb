@@ -4,12 +4,15 @@
   <p>desc: <%= @films['description'] %></p> 
 </pre>
 
-<a href="/films/<%= @films['id'] %>/edit">Edit</a>
+<%if @access_level == 2%>
 
-<form action='/films/<%= @films['id'] %>/delete' method='post'> 
-  <button type="submit">DELETE</button>
-</form>
+  <a href="/films/<%= @films['id'] %>/edit">Edit</a>
 
-<a href="/films/new_comment">Lägg till kommentar OBS!!! fungerar ej</a>
+  <form action='/films/<%= @films['id'] %>/delete' method='post'> 
+    <button type="submit">DELETE</button>
+  </form>
+
+<%end%>
+
 
 <a href="/films">Tillbaka till filmer</a>

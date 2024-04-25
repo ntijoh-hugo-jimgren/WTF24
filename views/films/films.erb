@@ -3,4 +3,11 @@
         <a href="/films/<%=film[0]%>"><%=film[1]%></a>
     </li>
 <% end %>
-<a href="/films/new">Lägg till film</a>
+
+<%if @access_level >= 1%>
+    <a href="/films/new">Lägg till film</a>
+<%end%>
+
+<form action='/films/logout' method='post'> 
+  <button type="submit">Logga ut</button>
+</form>
