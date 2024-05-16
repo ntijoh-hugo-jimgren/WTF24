@@ -28,11 +28,11 @@ class App < Sinatra::Base
     end
 
     get '/' do
-        erb :'films/index'
+        erb :'/index'
     end
 
     get '/films/login' do
-        erb :'films/login'
+        erb :'/login'
     end
 
     post '/films/login' do
@@ -59,7 +59,7 @@ class App < Sinatra::Base
     end
 
     get '/films/registrate' do
-        erb :'films/registrate'
+        erb :'/registrate'
     end
 
     post '/films/registrate' do
@@ -80,7 +80,7 @@ class App < Sinatra::Base
 
     get '/films/new' do
 
-        erb :'films/new'
+        erb :'/new'
     end
 
     post '/films/new' do 
@@ -93,12 +93,12 @@ class App < Sinatra::Base
 
     get '/films' do
         @films = db.execute('SELECT * FROM films')
-        erb :'films/films'
+        erb :'/films'
     end
 
     get '/films/:id' do |id|
         @films = db.execute('SELECT * FROM films WHERE id = ?', id).first
-        erb :'films/filmdesc'
+        erb :'/filmdesc'
     end
 
     post '/films/:id/delete' do |id| 
@@ -111,7 +111,7 @@ class App < Sinatra::Base
 
     get '/films/:id/edit' do |id| 
         @films = db.execute('SELECT * FROM films WHERE id = ?', id.to_i).first
-        erb :'films/edit'
+        erb :'/edit'
     end
 
     post '/films/:id/update' do |id| 

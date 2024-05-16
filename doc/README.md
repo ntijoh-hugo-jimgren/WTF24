@@ -7,7 +7,7 @@ En applikation där användare kan skapa en lista med filmer de har sett. De kan
 ## Användare och roller
 
 Gästanvändare - oinloggad
-. Kan söka efter titlar och se genomsnittligt betyg. Kan inte se eller skriva kommentarer eller sätta egna betyg.
+. Kan söka efter titlar. 
 
 Standardanvändare - inloggad. Kan allt gästanvändare kan, men kan även lägga in nya filmer och skriva kommentarer etc. Kan ta bort sitt eget konto och information kopplat till det.
 

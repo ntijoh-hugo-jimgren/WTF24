@@ -34,6 +34,11 @@ def create_tables
         "name"    TEXT NOT NULL UNIQUE,
     )')
 
+    db.execute('CREATE TABLE "actors" (
+        "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+        "name"    TEXT NOT NULL UNIQUE,
+    )')
+
     # db.execute('CREATE TABLE "comments" (
     #     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     #     "content"    TEXT NOT NULL,
