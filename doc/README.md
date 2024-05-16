@@ -9,9 +9,9 @@ En applikation där användare kan skapa en lista med filmer de har sett. De kan
 Gästanvändare - oinloggad
 . Kan söka efter titlar. 
 
-Standardanvändare - inloggad. Kan allt gästanvändare kan, men kan även lägga in nya filmer och skriva kommentarer etc. Kan ta bort sitt eget konto och information kopplat till det.
+Standardanvändare - inloggad. Kan allt gästanvändare kan, men kan även lägga in nya filmer och ta bort sin profil. 
 
-Adminanvändare - kan ta bort/editera filmer, kommentarer och användare.
+Adminanvändare - kan ta bort/editera filmer och användare.
 
 ## ER-Diagram
 

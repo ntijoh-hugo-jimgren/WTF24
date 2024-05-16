@@ -1,7 +1,7 @@
 <h2>Redigera dina filmer här!</h2>
 
 <%if @access_level == 2%>
-  <form action='/films/<%=@films['id']%>/update' method='post'> 
+  <form action='/<%=@films['id']%>/update' method='post'> 
     <input type='text' name='title' value='<%= @films['title']%>'></input> 
     <input type='text' name='description' value='<%= @films['description']%>'></input> 
     <button type='submit'>Send</button>

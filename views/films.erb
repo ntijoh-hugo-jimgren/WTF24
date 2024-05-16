@@ -1,13 +1,21 @@
 <% @films.each do |film| %>
     <li>
-        <a href="/films/<%=film[0]%>"><%=film[1]%></a>
+        <a href="/<%=film[0]%>"><%=film[1]%></a>
     </li>
 <% end %>
 
 <%if @access_level >= 1%>
-    <a href="/films/new">Lägg till film</a>
+    <a href="/new">Lägg till film</a>
+
+    <form action='/logout' method='post'> 
+        <button type="submit">Logga ut</button>
+    </form>
+
+    <form action='/<%= @user['id'] %>/delete_user' method='post'> 
+        <button type="submit">RADERA PROFIL</button>
+    </form>
 <%end%>
 
-<form action='/films/logout' method='post'> 
-  <button type="submit">Logga ut</button>
-</form>
+<%if @access_level == 2%>
+    <a href="/delete_user">Radera annan profil</a>
+<%end%>

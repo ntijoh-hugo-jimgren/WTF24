@@ -1,4 +1,6 @@
+<%if @films != nil%>
 <h2><%= @films['name'] %></h2>
+
 <pre> 
   <h2><%= @films['title'] %></h2>
   <p>desc: <%= @films['description'] %></p> 
@@ -6,13 +8,14 @@
 
 <%if @access_level == 2%>
 
-  <a href="/films/<%= @films['id'] %>/edit">Edit</a>
+  <a href="/<%= @films['id'] %>/edit">Edit</a>
 
-  <form action='/films/<%= @films['id'] %>/delete' method='post'> 
-    <button type="submit">DELETE</button>
+  <form action='/<%= @films['id'] %>/delete' method='post'> 
+    <button type="submit">RADERA</button>
   </form>
 
 <%end%>
 
 
 <a href="/films">Tillbaka till filmer</a>
+<%end%>
