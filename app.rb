@@ -13,7 +13,6 @@ class App < Sinatra::Base
     end
 
     before do
-        if session[:user_id]
             @user = db.execute('SELECT * FROM users WHERE id = ?', session[:user_id]).first
             @access_level = @user['access_level']
         end
@@ -42,6 +41,7 @@ class App < Sinatra::Base
         user = db.execute('SELECT * FROM users WHERE username = ?', username).first
 
         if user == nil
+            puts "användaren finns inte!"
             redirect "/register"
         end
 
@@ -51,6 +51,7 @@ class App < Sinatra::Base
             session[:user_id] = user['id'] 
             redirect "/films"
         else
+            puts "fel lösenord!"
             redirect "/login"
         end
     end
@@ -71,6 +72,7 @@ class App < Sinatra::Base
             result = db.execute(query, username, hashed_pass, access_level).first 
             redirect "/login"
         else
+            puts "Användarnamnet är upptaget!"
             redirect "/register"
         end
     end
@@ -131,9 +133,8 @@ class App < Sinatra::Base
         redirect "/"
     end
 
-    get '/delete_user' do
-
-        erb :'/delete_user'
+    get '/delete_other_user' do
+        erb :'/delete_other_user'
     end
 
     post '/delete_other_user' do
